@@ -1,0 +1,165 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "Esolang",
+    "patterns": [
+        {
+            "include": "#comments"
+        },
+        {
+            "include": "#keywords"
+        },
+        {
+            "include": "#strings"
+        },
+        {
+            "include": "#constant"
+        },
+        {
+            "include": "#entity"
+        }
+    ],
+    "repository": {
+        "keywords": {
+            "patterns": [
+                {
+                    "name": "keyword.control.esolang",
+                    "match": "\\b(if|fn|import|let|assert|const|when)\\b"
+                },
+                {
+                    "name": "keyword.operator.arrow.esolang",
+                    "match": "(<\\-|\\->)"
+                },
+                {
+                    "name": "keyword.operator.splat.esolang",
+                    "match": "\\.\\."
+                },
+                {
+                    "name": "keyword.operator.comparison.float.esolang",
+                    "match": "(<=\\.|>=\\.|==\\.|!=\\.|<\\.|>\\.)"
+                },
+                {
+                    "name": "keyword.operator.comparison.int.esolang",
+                    "match": "(<=|>=|==|!=|<|>)"
+                },
+                {
+                    "name": "keyword.operator.logical.esolang",
+                    "match": "(&&|\\|\\|)"
+                },
+                {
+                    "name": "keyword.operator.string.esolang",
+                    "match": "<>"
+                },
+                {
+                    "name": "keyword.operator.other.esolang",
+                    "match": "\\|"
+                },
+                {
+                    "name": "keyword.operator.arithmetic.float.esolang",
+                    "match": "(\\+\\.|\\-\\.|/\\.|\\*\\.|%\\.)"
+                },
+                {
+                    "name": "keyword.operator.arithmetic.int.esolang",
+                    "match": "(\\+|\\-|/|\\*|%)"
+                },
+                {
+                    "name": "keyword.operator.assignment.esolang",
+                    "match": "="
+                }
+            ]
+        },
+        "strings": {
+            "name": "string.quoted.double.esolang",
+            "begin": "\"",
+            "end": "\"",
+            "patterns": [
+                {
+                    "name": "constant.character.escape.esolang",
+                    "match": "\\\\."
+                }
+            ]
+        },
+        "comments": {
+            "patterns": [
+                {
+                    "name": "comment.line.esolang",
+                    "match": "//.*"
+                }
+            ]
+        },
+        "constant": {
+            "patterns": [
+                {
+                    "include": "#binary_number"
+                },
+                {
+                    "include": "#octal_number"
+                },
+                {
+                    "include": "#hexadecimal_number"
+                },
+                {
+                    "include": "#decimal_number"
+                },
+                {
+                    "include": "#boolean"
+                },
+                {
+                    "name": "entity.name.type.esolang",
+                    "match": "[[:upper:]][[:word:]]*"
+                }
+            ]
+        },
+        "binary_number": {
+            "name": "constant.numeric.binary.esolang",
+            "match": "\\b0b[0-1]+\\b",
+            "patterns": []
+        },
+        "octal_number": {
+            "name": "constant.numeric.octal.esolang",
+            "match": "\\b0o[0-7]+\\b",
+            "patterns": []
+        },
+        "decimal_number": {
+            "name": "constant.numeric.decimal.esolang",
+            "match": "\\b[[:digit:]]+(_?[[:digit:]])*(\\.[[:digit:]]*)?(e-?[[:digit:]]*)?\\b",
+            "patterns": []
+        },
+        "hexadecimal_number": {
+            "name": "constant.numeric.hexadecimal.esolang",
+            "match": "\\b0x[[:xdigit:]]+\\b",
+            "patterns": []
+        },
+        "boolean": {
+            "name": "constant.language.boolean.esolang",
+            "match": "\\b(true|false)\\b",
+            "patterns": []
+        },
+        "entity": {
+            "patterns": [
+                {
+                    "begin": "\\b([[:lower:]][[:word:]]*)([[:space:]]*)?\\(",
+                    "end": "\\)",
+                    "patterns": [
+                        {
+                            "include": "$self"
+                        }
+                    ],
+                    "captures": {
+                        "1": {
+                            "name": "entity.name.function.esolang"
+                        }
+                    }
+                },
+                {
+                    "name": "variable.parameter.esolang",
+                    "match": "\\b([[:lower:]][[:word:]]*):\\s"
+                },
+                {
+                    "name": "entity.name.namespace.esolang",
+                    "match": "\\b([[:lower:]][[:word:]]*):"
+                }
+            ]
+        }
+    },
+    "scopeName": "source.esolang"
+}

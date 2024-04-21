@@ -1,0 +1,103 @@
+{
+    "name": "esolang",
+    "displayName": "Esolang",
+    "description": "Support for the Esolang programming language",
+    "version": "0.0.1",
+    "publisher": "esolang",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ahmedsaheed/esolang"
+    },
+    "engines": {
+        "vscode": "^1.52.0"
+    },
+    "categories": [
+        "Programming Languages",
+        "Formatters",
+        "Snippets"
+    ],
+    "icon": "images/icon.png",
+    "contributes": {
+        "languages": [
+            {
+                "id": "esolang",
+                "aliases": [
+                    "Esolang",
+                    "esolang"
+                ],
+                "extensions": [
+                    ".eso"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "esolang",
+                "scopeName": "source.esolang",
+                "path": "./syntaxes/esolang.tmLanguage.json"
+            }
+        ],
+        "snippets": [
+            {
+                "language": "esolang",
+                "path": "./snippets.json"
+            }
+        ],
+        "commands": [
+            {
+                "command": "esolang.restartServer",
+                "title": "Restart Esolang Server",
+                "category": "Esolang"
+            }
+        ],
+        "configurationDefaults": {
+            "[esolang]": {
+                "editor.formatOnSave": true
+            }
+        },
+        "configuration": {
+            "title": "Esolang",
+            "properties": {
+                "esolang.path": {
+                    "type": "string",
+                    "default": null,
+                    "description": "A path to the esolang executable. By default, the extension looks for esolang in the PATH, but if set, will use the path specified instead.",
+                    "scope": "machine"
+                }
+            }
+        }
+    },
+    "activationEvents": [],
+    "main": "./out/extension.js",
+    "scripts": {
+        "vscode:prepublish": "webpack --mode production",
+        "compile": "webpack --mode development",
+        "compile-watch": "webpack --mode development --watch",
+        "test-compile": "tsc -p ./",
+        "vscode:package": "vsce package",
+        "format-check": "prettier ./**/*.ts --check",
+        "format": "prettier ./**/*.ts --write --cache"
+    },
+    "devDependencies": {
+        "@types/glob": "^7.1.3",
+        "@types/mocha": "^8.0.4",
+        "@types/node": "^12.11.7",
+        "@types/vscode": "^1.52.0",
+        "@typescript-eslint/eslint-plugin": "^4.9.0",
+        "@typescript-eslint/parser": "^4.9.0",
+        "eslint": "^7.15.0",
+        "glob": "^7.1.6",
+        "mocha": "^10.1.0",
+        "prettier": "^3.0.1",
+        "ts-loader": "^8.0.13",
+        "typescript": "^4.1.2",
+        "vsce": "^2.15.0",
+        "vscode-test": "^1.4.1",
+        "webpack": "^5.76.0",
+        "webpack-cli": "^4.9.2"
+    },
+    "dependencies": {
+        "vscode-languageclient": "^8.1.0"
+    }
+}
